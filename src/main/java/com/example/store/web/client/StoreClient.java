@@ -1,5 +1,6 @@
 package com.example.store.web.client;
 
+import com.example.store.domain.ProductTypeEnum;
 import com.example.store.web.model.ProductDto;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -21,8 +22,8 @@ public class StoreClient {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public ProductDto restockFromWarehouse(UUID uuid){
-        return restTemplate.getForObject(apihost + WAREHOUSE_PATH_V1, ProductDto.class, uuid);
+    public ProductDto restockFromWarehouse(ProductTypeEnum productTypeEnum){
+        return restTemplate.getForObject(apihost + WAREHOUSE_PATH_V1, ProductDto.class, productTypeEnum);
     }
 
 
