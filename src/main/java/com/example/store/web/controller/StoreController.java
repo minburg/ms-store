@@ -58,6 +58,11 @@ public class StoreController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @PostMapping("/deliverProducts")
+    public ResponseEntity storeProducts(@RequestBody List<ProductDto> products){
+        customerService.storeProducts(products);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
 
 

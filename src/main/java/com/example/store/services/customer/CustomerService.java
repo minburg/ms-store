@@ -25,4 +25,6 @@ public interface CustomerService {
     Boolean isAvailable(UUID uuid) throws Exception;
 
     void initializeDatabase();
+
+    void storeProducts(List<ProductDto> products);
 }

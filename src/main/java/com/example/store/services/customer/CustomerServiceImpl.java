@@ -222,4 +222,11 @@ public class CustomerServiceImpl implements CustomerService {
             productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
         });
     }
+
+    @Override
+    public void storeProducts(List<ProductDto> products) {
+        products.forEach(product -> {
+            productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
+        });
+    }
 }
