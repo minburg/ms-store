@@ -38,7 +38,7 @@ public class StoreController {
     }
 
     @GetMapping("/items/filter/color/{color}")
-    public ResponseEntity<List<ProductDto>> getallItemsWithColor(@PathVariable("color") ProductColourEnum color){
+    public ResponseEntity<List<ProductDto>> getallItemsWithColor(@PathVariable("color") String color){
         return new ResponseEntity<>(customerService.getAllItemsWithColor(color), HttpStatus.OK);
     }
 

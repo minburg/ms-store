@@ -33,8 +33,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<ProductDto> getAllItemsWithColor(ProductColourEnum color) {
-        return null;
+    public List<ProductDto> getAllItemsWithColor(String color) {
+        for (ProductColourEnum colorEnum: ProductColourEnum.values()){
+            if(colorEnum.toString().toLowerCase().equals(color)){
+                return productMapper.ListOfProductToListOfProductDto(productRepository.findAllByColour(colorEnum));
+            }
+        }
+        return new ArrayList<>();
     }
 
     @Override

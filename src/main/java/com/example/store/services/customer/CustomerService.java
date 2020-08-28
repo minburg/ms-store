@@ -14,7 +14,7 @@ public interface CustomerService {
 
     void placeOrder(List<UUID> uuids);
 
-    List<ProductDto> getAllItemsWithColor(ProductColourEnum color);
+    List<ProductDto> getAllItemsWithColor(String color);
 
     List<ProductDto> getAllItemsWithMaxPrice(BigDecimal max);
 
