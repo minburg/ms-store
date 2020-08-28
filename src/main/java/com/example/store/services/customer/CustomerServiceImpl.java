@@ -48,92 +48,134 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ProductDto getItemById(UUID uuid) {
-        return null;
+    public ProductDto getItemById(UUID uuid) throws Exception {
+        return productMapper.productToProductDto(productRepository.findById(uuid).orElseThrow( () -> new Exception()));
+    }
+
+    @Override
+    public Boolean isAvailable(UUID uuid) throws Exception {
+        Product product = productRepository.findById(uuid).orElseThrow( () -> new Exception());
+        if(product.getQuantity()>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     private List<ProductDto> createProductsListToFillDatabase(){
 
         List<ProductDto> productList = new ArrayList<>();
         ProductDto product = ProductDto.builder()
-                .name("Car")
-                .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
+                .name("Sony Gaming Laptop 3000")
+                .colour(ProductColourEnum.BLUE)
+                .quantity(7)
+                .price(new BigDecimal(1600))
                 .type(ProductTypeEnum.LAPTOP)
                 .build();
 
         ProductDto product2 = ProductDto.builder()
-                .name("Car")
+                .name("MacBook Pro 16")
                 .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
+                .quantity(3)
+                .price(new BigDecimal(2300))
                 .type(ProductTypeEnum.LAPTOP)
                 .build();
 
         ProductDto product3 = ProductDto.builder()
-                .name("Car")
-                .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
+                .name("Lenovo Yoga 3")
+                .colour(ProductColourEnum.GREEN)
+                .quantity(5)
+                .price(new BigDecimal(500))
                 .type(ProductTypeEnum.LAPTOP)
                 .build();
 
         ProductDto product4 = ProductDto.builder()
-                .name("Car")
+                .name("Playstation 5")
                 .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
-                .type(ProductTypeEnum.LAPTOP)
+                .quantity(10)
+                .price(new BigDecimal(600))
+                .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
         ProductDto product5 = ProductDto.builder()
-                .name("Car")
-                .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
-                .type(ProductTypeEnum.LAPTOP)
+                .name("Playstation 5")
+                .colour(ProductColourEnum.GREEN)
+                .quantity(8)
+                .price(new BigDecimal(600))
+                .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
         ProductDto product6 = ProductDto.builder()
-                .name("Car")
+                .name("Playstation 4 Pro")
                 .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
-                .type(ProductTypeEnum.LAPTOP)
+                .quantity(30)
+                .price(new BigDecimal(400))
+                .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
         ProductDto product7 = ProductDto.builder()
-                .name("Car")
-                .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
-                .type(ProductTypeEnum.LAPTOP)
+                .name("Playstation 4 Pro")
+                .colour(ProductColourEnum.GREEN)
+                .quantity(30)
+                .price(new BigDecimal(400))
+                .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
         ProductDto product8 = ProductDto.builder()
-                .name("Car")
+                .name("Playstation 4 slim")
                 .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
-                .type(ProductTypeEnum.LAPTOP)
+                .quantity(50)
+                .price(new BigDecimal(250))
+                .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
         ProductDto product9 = ProductDto.builder()
-                .name("Car")
-                .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
-                .type(ProductTypeEnum.LAPTOP)
+                .name("Playstation 4 slim")
+                .colour(ProductColourEnum.WHITE)
+                .quantity(37)
+                .price(new BigDecimal(250))
+                .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
 
         ProductDto product10 = ProductDto.builder()
-                .name("Car")
+                .name("Sony ag9")
                 .colour(ProductColourEnum.BLACK)
-                .quantity(1)
-                .price(new BigDecimal(100))
-                .type(ProductTypeEnum.LAPTOP)
+                .quantity(15)
+                .price(new BigDecimal(1800))
+                .type(ProductTypeEnum.TV)
+                .build();
+
+        ProductDto product11 = ProductDto.builder()
+                .name("Sony ag8")
+                .colour(ProductColourEnum.BLACK)
+                .quantity(25)
+                .price(new BigDecimal(1500))
+                .type(ProductTypeEnum.TV)
+                .build();
+
+        ProductDto product12 = ProductDto.builder()
+                .name("LG C9")
+                .colour(ProductColourEnum.WHITE)
+                .quantity(40)
+                .price(new BigDecimal(1700))
+                .type(ProductTypeEnum.TV)
+                .build();
+
+        ProductDto product13 = ProductDto.builder()
+                .name("Xbox Series X")
+                .colour(ProductColourEnum.BLACK)
+                .quantity(13)
+                .price(new BigDecimal(600))
+                .type(ProductTypeEnum.XBOX)
+                .build();
+
+        ProductDto product14 = ProductDto.builder()
+                .name("XBox One X")
+                .colour(ProductColourEnum.WHITE)
+                .quantity(22)
+                .price(new BigDecimal(340))
+                .type(ProductTypeEnum.XBOX)
                 .build();
 
         productList.add(product);
@@ -146,6 +188,10 @@ public class CustomerServiceImpl implements CustomerService {
         productList.add(product8);
         productList.add(product9);
         productList.add(product10);
+        productList.add(product11);
+        productList.add(product12);
+        productList.add(product13);
+        productList.add(product14);
 
         return productList;
     }

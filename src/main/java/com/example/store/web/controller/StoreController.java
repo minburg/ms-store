@@ -32,19 +32,24 @@ public class StoreController {
         return new ResponseEntity<>(customerService.getAllItems(), HttpStatus.OK);
     }
 
-    @GetMapping("/Items/filter/MaxPrice/{price}")
+    @GetMapping("/items/filter/MaxPrice/{price}")
     public ResponseEntity<List<ProductDto>> getAllItemsWithMaxPrice(@PathVariable("price") BigDecimal maxPrice){
         return new ResponseEntity<>(customerService.getAllItemsWithMaxPrice(maxPrice), HttpStatus.OK);
     }
 
-    @GetMapping("/Items/filter/color/{color}")
+    @GetMapping("/items/filter/color/{color}")
     public ResponseEntity<List<ProductDto>> getallItemsWithColor(@PathVariable("color") ProductColourEnum color){
         return new ResponseEntity<>(customerService.getAllItemsWithColor(color), HttpStatus.OK);
     }
 
-    @GetMapping("/Items/isAvailable/{id}")
-    public ResponseEntity<ProductDto> getItemById(@PathVariable("id") UUID uuid){
+    @GetMapping("/items/getItem/{id}")
+    public ResponseEntity<ProductDto> getItemById(@PathVariable("id") UUID uuid) throws Exception {
         return new ResponseEntity<>(customerService.getItemById(uuid), HttpStatus.OK);
+    }
+
+    @GetMapping("/items/isAvailable/{id}")
+    public ResponseEntity<Boolean> isAvailable(@PathVariable("id") UUID uuid) throws Exception {
+        return new ResponseEntity<>(customerService.isAvailable(uuid), HttpStatus.OK);
     }
 
     @PostMapping("/initialize")

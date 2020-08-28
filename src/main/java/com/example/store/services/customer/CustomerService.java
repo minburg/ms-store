@@ -20,7 +20,9 @@ public interface CustomerService {
 
     List<ProductDto> getAllItems();
 
-    ProductDto getItemById(UUID uuid);
+    ProductDto getItemById(UUID uuid) throws Exception;
+
+    Boolean isAvailable(UUID uuid) throws Exception;
 
     void initializeDatabase();
 }

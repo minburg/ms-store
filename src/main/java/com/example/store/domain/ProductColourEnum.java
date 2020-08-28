@@ -1,5 +1,5 @@
 package com.example.store.domain;
 
 public enum ProductColourEnum {
-    BLACK, GREEN, BLUE
+    BLACK, GREEN, BLUE, WHITE
 }
