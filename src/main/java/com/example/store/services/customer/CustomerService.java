@@ -16,13 +16,11 @@ public interface CustomerService {
 
     List<ProductDto> getAllItemsWithColor(ProductColourEnum color);
 
-    List<ProductDto> getGreenProducts();
-
     List<ProductDto> getAllItemsWithMaxPrice(BigDecimal max);
 
     List<ProductDto> getAllItems();
 
     ProductDto getItemById(UUID uuid);
 
-    ProductDto createProduct();
+    void initializeDatabase();
 }

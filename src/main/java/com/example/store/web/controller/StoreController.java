@@ -47,15 +47,12 @@ public class StoreController {
         return new ResponseEntity<>(customerService.getItemById(uuid), HttpStatus.OK);
     }
 
-    @GetMapping("/createProduct")
-    public ResponseEntity<ProductDto> createProduct(){
-        return new ResponseEntity<>(customerService.createProduct(), HttpStatus.OK);
+    @PostMapping("/initialize")
+    public ResponseEntity createProduct(){
+        customerService.initializeDatabase();
+        return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<ProductDto> creatfeeProduct(){
-        return new ResponseEntity<>(customerService.createProduct(), HttpStatus.OK);
-    }
 
 
 
