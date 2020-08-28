@@ -140,3 +140,8 @@ Desktop.ini
 .eslintcache
 /.idea/
 
+/target/store-0.0.1-SNAPSHOT.jar.original
+/target/classes/application.properties
+/target/
+/mvnw
+/mvnw.cmd
