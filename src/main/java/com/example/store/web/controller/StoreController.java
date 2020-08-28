@@ -21,7 +21,7 @@ public class StoreController {
         this.customerService = customerService;
     }
 
-    @PutMapping("/orderItem")
+    @PostMapping("/orderItem")
     public ResponseEntity placeOrder(@RequestBody List<UUID> uuids){
         customerService.placeOrder(uuids);
         return new ResponseEntity<>(HttpStatus.OK);

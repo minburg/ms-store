@@ -16,6 +16,7 @@ import java.util.UUID;
 public class StoreClient {
 
     public final String WAREHOUSE_PATH_V1 = "api/v1/warehouse/";
+    public final String REORDER_PRODUCTS = "/reorderProducts";
     private String apihost;
     private final RestTemplate restTemplate;
 
@@ -23,8 +24,8 @@ public class StoreClient {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public void restockFromWarehouse(ProductTypeEnum productTypeEnum){
-        ResponseEntity<ProductDto> forEntity = restTemplate.getForEntity(apihost + WAREHOUSE_PATH_V1, ProductDto.class, productTypeEnum);
+    public void restockFromWarehouse(ProductTypeEnum productType){
+        ResponseEntity<ProductDto> forEntity = restTemplate.getForEntity(apihost + WAREHOUSE_PATH_V1 + REORDER_PRODUCTS + "?productType={hotel}", ProductDto.class, productType);
         System.out.println(forEntity.getStatusCode().toString());
     }
 

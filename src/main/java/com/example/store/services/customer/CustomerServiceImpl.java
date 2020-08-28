@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.store.web.model.ProductDto;
 import com.example.store.web.model.mapper.ProductMapper;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,6 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
                     product.setQuantity(product.getQuantity()-1);
                     productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
                 }else{
+                    System.out.println("restock");
                     storeClient.restockFromWarehouse(product.getType());
                 }
             } catch (Exception e) {
@@ -95,7 +97,7 @@ public class CustomerServiceImpl implements CustomerService {
         ProductDto product2 = ProductDto.builder()
                 .name("MacBook Pro 16")
                 .colour(ProductColourEnum.BLACK)
-                .quantity(3)
+                .quantity(0)
                 .price(new Double(2300))
                 .type(ProductTypeEnum.LAPTOP)
                 .build();
@@ -215,6 +217,7 @@ public class CustomerServiceImpl implements CustomerService {
         return productList;
     }
 
+    @PostConstruct
     @Override
     public void initializeDatabase() {
         List <ProductDto> products = createProductsListToFillDatabase();
