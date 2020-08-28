@@ -38,8 +38,9 @@ public class CustomerServiceImpl implements CustomerService {
                 if(isAvailable(product.getId())){
                     product.setQuantity(product.getQuantity()-1);
                     productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
+                    System.out.println("You just purchased: " + product.getName() + " in color: " + product.getColour());
                 }else{
-                    System.out.println("restock");
+                    System.out.println(product.getName() + " no longer available, requesting restock");
                     storeClient.restockFromWarehouse(product.getType());
                 }
             } catch (Exception e) {
@@ -229,6 +230,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void storeProducts(List<ProductDto> products) {
         products.forEach(product -> {
+            System.out.println(product.getQuantity()+ "Product: " + product.getName() + " in color: " + product.getColour() + " was delivered");
             productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
         });
     }
