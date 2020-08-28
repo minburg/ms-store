@@ -19,7 +19,7 @@ public class ProductDto {
     private UUID id;
     private String name;
     private Integer quantity;
-    private BigDecimal price;
+    private Double price;
     private ProductTypeEnum type;
     private ProductColourEnum colour;
 

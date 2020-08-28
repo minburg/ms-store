@@ -29,7 +29,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void placeOrder(List<UUID> uuids) {
+        uuids.forEach(uuid -> {
+            try {
+                ProductDto product = getItemById(uuid);
+                product.setQuantity(product.getQuantity()-1);
+                productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+
+        });
     }
 
     @Override
@@ -43,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<ProductDto> getAllItemsWithMaxPrice(BigDecimal max) {
+    public List<ProductDto> getAllItemsWithMaxPrice(Double max) {
         return productMapper.ListOfProductToListOfProductDto(productRepository.findAllByPriceIsLessThan(max));
     }
 
@@ -74,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Sony Gaming Laptop 3000")
                 .colour(ProductColourEnum.BLUE)
                 .quantity(7)
-                .price(new BigDecimal(1600))
+                .price(new Double(1600))
                 .type(ProductTypeEnum.LAPTOP)
                 .build();
 
@@ -82,7 +92,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("MacBook Pro 16")
                 .colour(ProductColourEnum.BLACK)
                 .quantity(3)
-                .price(new BigDecimal(2300))
+                .price(new Double(2300))
                 .type(ProductTypeEnum.LAPTOP)
                 .build();
 
@@ -90,7 +100,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Lenovo Yoga 3")
                 .colour(ProductColourEnum.GREEN)
                 .quantity(5)
-                .price(new BigDecimal(500))
+                .price(new Double(500))
                 .type(ProductTypeEnum.LAPTOP)
                 .build();
 
@@ -98,7 +108,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Playstation 5")
                 .colour(ProductColourEnum.BLACK)
                 .quantity(10)
-                .price(new BigDecimal(600))
+                .price(new Double(600))
                 .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
@@ -106,7 +116,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Playstation 5")
                 .colour(ProductColourEnum.GREEN)
                 .quantity(8)
-                .price(new BigDecimal(600))
+                .price(new Double(600))
                 .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
@@ -114,7 +124,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Playstation 4 Pro")
                 .colour(ProductColourEnum.BLACK)
                 .quantity(30)
-                .price(new BigDecimal(400))
+                .price(new Double(400))
                 .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
@@ -122,7 +132,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Playstation 4 Pro")
                 .colour(ProductColourEnum.GREEN)
                 .quantity(30)
-                .price(new BigDecimal(400))
+                .price(new Double(400))
                 .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
@@ -130,7 +140,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Playstation 4 slim")
                 .colour(ProductColourEnum.BLACK)
                 .quantity(50)
-                .price(new BigDecimal(250))
+                .price(new Double(250))
                 .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
@@ -138,7 +148,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Playstation 4 slim")
                 .colour(ProductColourEnum.WHITE)
                 .quantity(37)
-                .price(new BigDecimal(250))
+                .price(new Double(250))
                 .type(ProductTypeEnum.PLAYSTATION)
                 .build();
 
@@ -147,7 +157,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Sony ag9")
                 .colour(ProductColourEnum.BLACK)
                 .quantity(15)
-                .price(new BigDecimal(1800))
+                .price(new Double(1800))
                 .type(ProductTypeEnum.TV)
                 .build();
 
@@ -155,7 +165,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Sony ag8")
                 .colour(ProductColourEnum.BLACK)
                 .quantity(25)
-                .price(new BigDecimal(1500))
+                .price(new Double(1500))
                 .type(ProductTypeEnum.TV)
                 .build();
 
@@ -163,7 +173,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("LG C9")
                 .colour(ProductColourEnum.WHITE)
                 .quantity(40)
-                .price(new BigDecimal(1700))
+                .price(new Double(1700))
                 .type(ProductTypeEnum.TV)
                 .build();
 
@@ -171,7 +181,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("Xbox Series X")
                 .colour(ProductColourEnum.BLACK)
                 .quantity(13)
-                .price(new BigDecimal(600))
+                .price(new Double(600))
                 .type(ProductTypeEnum.XBOX)
                 .build();
 
@@ -179,7 +189,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .name("XBox One X")
                 .colour(ProductColourEnum.WHITE)
                 .quantity(22)
-                .price(new BigDecimal(340))
+                .price(new Double(340))
                 .type(ProductTypeEnum.XBOX)
                 .build();
 

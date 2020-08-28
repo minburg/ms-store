@@ -14,6 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     List<Product> findAllByColour(ProductColourEnum color);
 
-    List<Product> findAllByPriceIsLessThan(BigDecimal price);
+    List<Product> findAllByPriceIsLessThan(Double price);
 
 }

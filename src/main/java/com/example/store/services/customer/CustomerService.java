@@ -16,7 +16,7 @@ public interface CustomerService {
 
     List<ProductDto> getAllItemsWithColor(String color);
 
-    List<ProductDto> getAllItemsWithMaxPrice(BigDecimal max);
+    List<ProductDto> getAllItemsWithMaxPrice(Double max);
 
     List<ProductDto> getAllItems();
 
