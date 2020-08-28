@@ -32,15 +32,21 @@ public class CustomerServiceImpl implements CustomerService {
         uuids.forEach(uuid -> {
             try {
                 ProductDto product = getItemById(uuid);
-                product.setQuantity(product.getQuantity()-1);
-                productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
+                if(isAvailable(product.getId())){
+                    product.setQuantity(product.getQuantity()-1);
+                    productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
+                }else{
+                    reStockItem(product.getId());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         });
     }
+
+    void reStockItem(UUID uuid){
+        
+    };
 
     @Override
     public List<ProductDto> getAllItemsWithColor(String color) {
