@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
                     product.setQuantity(product.getQuantity()-1);
                     productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
                 }else{
-                    storeClient.restockFromWarehouse(product.getId());
+                    storeClient.restockFromWarehouse(product.getType());
                 }
             } catch (Exception e) {
                 e.printStackTrace();

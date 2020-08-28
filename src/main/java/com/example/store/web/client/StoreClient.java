@@ -4,6 +4,7 @@ import com.example.store.domain.ProductTypeEnum;
 import com.example.store.web.model.ProductDto;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,8 +23,9 @@ public class StoreClient {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public ProductDto restockFromWarehouse(ProductTypeEnum productTypeEnum){
-        return restTemplate.getForObject(apihost + WAREHOUSE_PATH_V1, ProductDto.class, productTypeEnum);
+    public void restockFromWarehouse(ProductTypeEnum productTypeEnum){
+        ResponseEntity<ProductDto> forEntity = restTemplate.getForEntity(apihost + WAREHOUSE_PATH_V1, ProductDto.class, productTypeEnum);
+        System.out.println(forEntity.getStatusCode().toString());
     }
 
 
