@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<ProductDto> getAllItemsWithMaxPrice(BigDecimal max) {
-        return null;
+        return productMapper.ListOfProductToListOfProductDto(productRepository.findAllByPriceIsLessThan(max));
     }
 
     @Override

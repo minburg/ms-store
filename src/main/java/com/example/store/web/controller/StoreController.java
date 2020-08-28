@@ -32,7 +32,7 @@ public class StoreController {
         return new ResponseEntity<>(customerService.getAllItems(), HttpStatus.OK);
     }
 
-    @GetMapping("/items/filter/MaxPrice/{price}")
+    @GetMapping("/items/filter/maxPrice/{price}")
     public ResponseEntity<List<ProductDto>> getAllItemsWithMaxPrice(@PathVariable("price") BigDecimal maxPrice){
         return new ResponseEntity<>(customerService.getAllItemsWithMaxPrice(maxPrice), HttpStatus.OK);
     }
