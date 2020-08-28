@@ -4,11 +4,11 @@ import com.example.store.domain.Product;
 import com.example.store.domain.ProductColourEnum;
 import com.example.store.domain.ProductTypeEnum;
 import com.example.store.repositories.ProductRepository;
+import com.example.store.web.client.StoreClient;
 import org.springframework.stereotype.Service;
 import com.example.store.web.model.ProductDto;
 import com.example.store.web.model.mapper.ProductMapper;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +21,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     private ProductRepository productRepository;
     private ProductMapper productMapper;
+    private StoreClient storeClient;
 
-    public CustomerServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
+    public CustomerServiceImpl(ProductRepository productRepository, ProductMapper productMapper, StoreClient storeClient) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.storeClient = storeClient;
     }
 
     @Override
@@ -36,17 +38,13 @@ public class CustomerServiceImpl implements CustomerService {
                     product.setQuantity(product.getQuantity()-1);
                     productRepository.saveAndFlush(productMapper.productDtoToProduct(product));
                 }else{
-                    reStockItem(product.getId());
+                    storeClient.restockFromWarehouse(product.getId());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
     }
-
-    void reStockItem(UUID uuid){
-        
-    };
 
     @Override
     public List<ProductDto> getAllItemsWithColor(String color) {
